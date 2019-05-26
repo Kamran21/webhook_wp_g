@@ -1,6 +1,8 @@
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Wbhook test`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
   },
@@ -36,9 +38,9 @@ module.exports = {
          * The base URL of the Wordpress site without the trailingslash and the protocol. This is required.
          * Example : 'gatsbyjsexamplewordpress.wordpress.com' or 'www.example-site.com'
          */
-        baseUrl: "localhost:8888/footballindex.com",
+        baseUrl: process.env.API_URL,
         // The protocol. This can be http or https.
-        protocol: "http",
+        protocol: process.env.API_PROTOCOL,
         // Indicates whether the site is hosted on wordpress.com.
         // If false, then the assumption is made that the site is self hosted.
         // If true, then the plugin will source its content on wordpress.com using the JSON REST API V2.
@@ -111,9 +113,12 @@ module.exports = {
           "**/tags",
           "**/taxonomies",
           "**/users",
+          "**/*/*/menus", // <== Menu api endpoint
+          "**/*/*/menu-locations", // <== Menu api endpoint
+          "**/*/*/hero", // <== hero api endpoint
         ],
         // Blacklisted routes using glob patterns
-        excludedRoutes: ["**/posts/1456"],
+        excludedRoutes: [],
         // use a custom normalizer which is applied after the built-in ones.
         normalizer: function({ entities }) {
           return entities
